@@ -22,10 +22,12 @@ async function butCalc(){
   var contribuicao = document.forms['simulator']['tempoDeMensalidade'].value
   
 
-
+  const currency = function(number){
+    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL', minimumFractionDigits: 2}).format(number)
+}
   json = {
     expr : [ 
-      `${mensalidade} * (((1 + ${juros}) ^ ${contribuicao}- 1) / ${juros})`
+      `${mensalidade} * (((1 + 0.${juros}) ^ ${contribuicao}- 1) / 0.${juros})`
     ],}
   StrJson = JSON.stringify(json)
   
@@ -58,7 +60,7 @@ async function butCalc(){
     
         dinheiroOutput.innerText = `R$${mensalidade}`
         
-        resultadoOutput.innerText = `R$${resultEnd}`
+        resultadoOutput.innerText = `${currency(resultEnd)}`
     
     
         tempoOutput.innerText = ``
