@@ -12,6 +12,7 @@ FormSub.onsubmit = function(e){
     let nome = document.forms['simulator']['nome']
     let mensalidade = document.forms['simulator']['valorDaMensalidade']
     let juros = document.forms['simulator']['taxaDeJuros']
+    var contribuicao = document.forms['simulator']['tempoDeMensalidade']
     if(!nome.value){
         ErrorForm = true
         nome.classList.add('InputError')
@@ -42,7 +43,16 @@ FormSub.onsubmit = function(e){
         let span = juros.nextSibling.nextSibling
         span.innerText = ""
     }
-    
+    if(contribuicao.value == 0){
+        ErrorForm = true
+        contribuicao.classList.add('InputError')
+        let span = contribuicao.nextSibling.nextSibling
+        span.innerText = "Selecione um periodo"
+    }else{
+        contribuicao.classList.remove('InputError')
+        let span = contribuicao.nextSibling.nextSibling
+        span.innerText = ""
+    }
     if (ErrorForm === false){
     
     Click.addEventListener("click", function(){
